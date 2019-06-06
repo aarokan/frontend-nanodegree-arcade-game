@@ -20,8 +20,8 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x = this.x + this.speed * dt;
     if (this.x > 500) {
-      this.x = -130;
-      this.speed = Math.random() * 200 + 90;
+        this.x = -130;
+        this.speed = Math.random() * 200 + 90;
     }
 };
 
@@ -34,33 +34,36 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 class Player {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-
-    // The image/sprite for our player
-    this.sprite = 'images/char-boy.png';
-  }
-
-  update() {
-
-  }
-
-  render() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  }
-
-  handleInput(key) {
-    if (key === 'left' && this.x != 0) {
-      this.x = this.x - 101;
-    } else if (key === 'up' && this.y != -14) {
-      this.y = this.y - 84;
-    } else if (key === 'right' && this.x != 404) {
-      this.x = this.x + 101;
-    } else if (key === 'down' && this.y != 406) {
-      this.y = this.y + 84;
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        // The image/sprite for our player
+        this.sprite = 'images/char-boy.png';
     }
-  }
+
+    update() {
+
+    }
+
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+
+    handleInput(key) {
+        if (key === 'left' && this.x != 0) {
+            this.x = this.x - 101;
+        } else if (key === 'up' && this.y != -14) {
+            this.y = this.y - 84;
+        } else if (key === 'right' && this.x != 404) {
+            this.x = this.x + 101;
+        } else if (key === 'down' && this.y != 406) {
+            this.y = this.y + 84;
+        }
+    }
+
+    reset() {
+
+    }
 }
 
 
