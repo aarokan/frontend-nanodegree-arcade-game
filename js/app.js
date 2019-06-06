@@ -51,13 +51,13 @@ class Player {
   }
 
   handleInput(key) {
-    if (key === 'left') {
+    if (key === 'left' && this.x != 0) {
       this.x = this.x - 101;
-    } else if (key === 'up') {
+    } else if (key === 'up' && this.y != -14) {
       this.y = this.y - 84;
-    } else if (key === 'right') {
+    } else if (key === 'right' && this.x != 404) {
       this.x = this.x + 101;
-    } else if (key === 'down') {
+    } else if (key === 'down' && this.y != 406) {
       this.y = this.y + 84;
     }
   }
