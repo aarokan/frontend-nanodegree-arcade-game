@@ -20,6 +20,9 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x = this.x + this.speed * dt;
+    if (this.x > 500) {
+      this.x = -130;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
