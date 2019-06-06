@@ -1,12 +1,11 @@
 // Enemies our player must avoid
-var Enemy = function(x, y, speed) {
+var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     // set x,y coordinate and the speed.
     this.x = x;
     this.y = y;
-    this.speed = speed;
-
+    this.speed = Math.random() * 200 + 90;
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -22,6 +21,7 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + this.speed * dt;
     if (this.x > 500) {
       this.x = -130;
+      this.speed = Math.random() * 200 + 90;
     }
 };
 
@@ -66,9 +66,9 @@ class Player {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-const enemy1 = new Enemy(-130, 63, 100);
-const enemy2 = new Enemy(-130, 145, 50);
-const enemy3 = new Enemy(-130, 227, 30);
+const enemy1 = new Enemy(-130, 63);
+const enemy2 = new Enemy(-130, 145);
+const enemy3 = new Enemy(-130, 227);
 
 allEnemies = [enemy1, enemy2, enemy3];
 // Place the player object in a variable called player
