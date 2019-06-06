@@ -69,8 +69,10 @@ class Player {
 const enemy1 = new Enemy(-130, 63);
 const enemy2 = new Enemy(-130, 145);
 const enemy3 = new Enemy(-130, 227);
+const enemy4 = new Enemy(-230, 63);
+const enemy5 = new Enemy(-230, 227);
 
-allEnemies = [enemy1, enemy2, enemy3];
+allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
 // Place the player object in a variable called player
 const player = new Player(202, 406);
 
