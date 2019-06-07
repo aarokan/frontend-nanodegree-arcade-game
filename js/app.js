@@ -21,6 +21,8 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + this.speed * dt;
     if (this.x > 500) {
         this.x = -130;
+
+        // set random speed from 90 (min speed) to 290 (max speed)
         this.speed = Math.random() * 200 + 90;
     }
 };
@@ -41,39 +43,37 @@ class Player {
         this.sprite = 'images/char-boy.png';
         this.currentPlayer = 1;
 
+        // an array to store null as initial value, true (for winning), false (for failing)
         this.playerWon = [null, null, null, null, null];
     }
 
     update() {
+        // Check if the player crossed to the water
         if (this.y === -14) {
             this.x = 202;
             this.y = 406;
 
+            // set playerWon array to true if player win
             switch (this.currentPlayer) {
                 case 1:
                     this.playerWon[0] = true;
                     this.reset();
-                    console.log('star1');
                     break;
                 case 2:
                     this.playerWon[1] = true;
                     this.reset();
-                    console.log('star2');
                     break;
                 case 3:
                     this.playerWon[2] = true;
                     this.reset();
-                    console.log('star3');
                     break;
                 case 4:
                     this.playerWon[3] = true;
                     this.reset();
-                    console.log('star3');
                     break;
                 case 5:
                     this.playerWon[4] = true;
                     this.reset();
-                    console.log('star3');
                     break;
             }
         }
@@ -83,6 +83,7 @@ class Player {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
+    // Move the player around but not off screen
     handleInput(key) {
         if (key === 'left' && this.x != 0) {
             this.x = this.x - 101;
@@ -96,8 +97,10 @@ class Player {
     }
 
     reset() {
+        // Counter increases every time a player cross or collide
         this.currentPlayer += 1;
 
+        // Change the player character
         switch (this.currentPlayer) {
             case 2:
                 this.sprite = 'images/char-cat-girl.png'
@@ -116,12 +119,12 @@ class Player {
 }
 
 
-// Gem class which instantiate stars to show that a player has won
+// Gem class which instantiate gems to show that a player has crossed
 class Gem {
     constructor(x, y, sprite = 'images/gem green.png') {
         this.x = x;
         this.y = y;
-        // The image for our stars
+        // The image for our gems
         this.sprite = sprite;
     }
 
@@ -139,16 +142,17 @@ const enemy4 = new Enemy(-230, 63);
 const enemy5 = new Enemy(-230, 227);
 
 const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
-// Place the player object in a variable called player
+// Instantiate and place the player object in a variable called player
 const player = new Player(202, 406);
 
-
+// Instantiate gems
 const gem1 = new Gem(0, -25);
 const gem2 = new Gem(101, -25);
 const gem3 = new Gem(202, -25);
 const gem4 = new Gem(303, -25);
 const gem5 = new Gem(404, -25);
 
+// Place all gems objects in an array called allGems
 const allGems = [gem1, gem2, gem3, gem4, gem5];
 
 // This listens for key presses and sends the keys to your

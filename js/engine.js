@@ -153,7 +153,9 @@ var Engine = (function(global) {
             enemy.render();
         });
 
-        // player.render();
+        /* Loop through all of the objects within the allGems array and call
+         * the render function if the player has won.
+         */
         allGems.forEach(function(gem, index) {
             if (player.playerWon[index] === true) {
                 gem.render();
