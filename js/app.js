@@ -98,14 +98,27 @@ class Player {
     reset() {
         this.currentPlayer += 1;
 
-
+        switch (this.currentPlayer) {
+            case 2:
+                this.sprite = 'images/char-cat-girl.png'
+                break;
+            case 3:
+                this.sprite = 'images/char-horn-girl.png'
+                break;
+            case 4:
+                this.sprite = 'images/char-pink-girl.png'
+                break;
+            case 5:
+                this.sprite = 'images/char-princess-girl.png'
+                break;
+        }
     }
 }
 
 
 // Gem class which instantiate stars to show that a player has won
 class Gem {
-    constructor(x = 0, y = -25, sprite = 'images/gem green.png') {
+    constructor(x, y, sprite = 'images/gem green.png') {
         this.x = x;
         this.y = y;
         // The image for our stars
@@ -130,7 +143,7 @@ const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
 const player = new Player(202, 406);
 
 
-const gem1 = new Gem();
+const gem1 = new Gem(0, -25);
 const gem2 = new Gem(101, -25);
 const gem3 = new Gem(202, -25);
 const gem4 = new Gem(303, -25);
