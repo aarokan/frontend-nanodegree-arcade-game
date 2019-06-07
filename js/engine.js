@@ -153,6 +153,13 @@ var Engine = (function(global) {
             enemy.render();
         });
 
+        // player.render();
+        allGems.forEach(function(gem, index) {
+            if (player.playerWon[index] === true) {
+                gem.render();
+            }
+        })
+
         player.render();
     }
 
@@ -173,7 +180,17 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png',
+        'images/star.png',
+        'images/rock.png',
+        'images/selector.png',
+        'images/heart.png',
+        'images/gem green.png',
+        'images/key.png'
     ]);
     Resources.onReady(init);
 

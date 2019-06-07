@@ -39,10 +39,44 @@ class Player {
         this.y = y;
         // The image/sprite for our player
         this.sprite = 'images/char-boy.png';
+        this.currentPlayer = 1;
+
+        this.playerWon = [null, null, null, null, null];
     }
 
     update() {
+        if (this.y === -14) {
+            this.x = 202;
+            this.y = 406;
 
+            switch (this.currentPlayer) {
+                case 1:
+                    this.playerWon[0] = true;
+                    this.reset();
+                    console.log('star1');
+                    break;
+                case 2:
+                    this.playerWon[1] = true;
+                    this.reset();
+                    console.log('star2');
+                    break;
+                case 3:
+                    this.playerWon[2] = true;
+                    this.reset();
+                    console.log('star3');
+                    break;
+                case 4:
+                    this.playerWon[3] = true;
+                    this.reset();
+                    console.log('star3');
+                    break;
+                case 5:
+                    this.playerWon[4] = true;
+                    this.reset();
+                    console.log('star3');
+                    break;
+            }
+        }
     }
 
     render() {
@@ -62,10 +96,26 @@ class Player {
     }
 
     reset() {
+        this.currentPlayer += 1;
+
 
     }
 }
 
+
+// Gem class which instantiate stars to show that a player has won
+class Gem {
+    constructor(x = 0, y = -25, sprite = 'images/gem green.png') {
+        this.x = x;
+        this.y = y;
+        // The image for our stars
+        this.sprite = sprite;
+    }
+
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -75,12 +125,18 @@ const enemy3 = new Enemy(-130, 227);
 const enemy4 = new Enemy(-230, 63);
 const enemy5 = new Enemy(-230, 227);
 
-allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
+const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
 // Place the player object in a variable called player
 const player = new Player(202, 406);
 
 
+const gem1 = new Gem();
+const gem2 = new Gem(101, -25);
+const gem3 = new Gem(202, -25);
+const gem4 = new Gem(303, -25);
+const gem5 = new Gem(404, -25);
 
+const allGems = [gem1, gem2, gem3, gem4, gem5];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
