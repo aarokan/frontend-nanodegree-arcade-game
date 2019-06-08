@@ -5,6 +5,8 @@ var Enemy = function(x, y) {
     // set x,y coordinate and the speed.
     this.x = x;
     this.y = y;
+
+    // Set random speed from 90 (min speed) to 290 (max speed)
     this.speed = Math.random() * 200 + 90;
 
     // The image/sprite for our enemies, this uses
@@ -19,11 +21,21 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x = this.x + this.speed * dt;
+
+    // Check if enemy cross the screen set to initial location
     if (this.x > 500) {
         this.x = -130;
 
-        // set random speed from 90 (min speed) to 290 (max speed)
+        // Set random speed from 90 (min speed) to 290 (max speed)
         this.speed = Math.random() * 200 + 90;
+    }
+
+    // check Collisions
+    if (parseInt(this.x, 10) < player.x && parseInt(this.x, 10) + 60 > player.x && this.y === player.y ||
+        parseInt(this.x, 10) > player.x && parseInt(this.x, 10) - 60 < player.x && this.y === player.y  ) {
+        // set playerWon array item to false if player win
+        player.playerWon[player.currentPlayer] = false;
+        player.reset();
     }
 };
 
@@ -41,37 +53,36 @@ class Player {
         this.y = y;
         // The image/sprite for our player
         this.sprite = 'images/char-boy.png';
-        this.currentPlayer = 1;
+        this.currentPlayer = 0;
 
-        // an array to store null as initial value, true (for winning), false (for failing)
+        // an array to store each try result, true (for winning), false (for failing)
         this.playerWon = [null, null, null, null, null];
     }
 
     update() {
         // Check if the player crossed to the water
-        if (this.y === -14) {
-            this.x = 202;
-            this.y = 406;
-
-            // set playerWon array to true if player win
+        if (this.y === -20) {
+            // this.x = 202;
+            // this.y = 400;
+            // set playerWon array item to true if player win
             switch (this.currentPlayer) {
-                case 1:
+                case 0:
                     this.playerWon[0] = true;
                     this.reset();
                     break;
-                case 2:
+                case 1:
                     this.playerWon[1] = true;
                     this.reset();
                     break;
-                case 3:
+                case 2:
                     this.playerWon[2] = true;
                     this.reset();
                     break;
-                case 4:
+                case 3:
                     this.playerWon[3] = true;
                     this.reset();
                     break;
-                case 5:
+                case 4:
                     this.playerWon[4] = true;
                     this.reset();
                     break;
@@ -87,11 +98,11 @@ class Player {
     handleInput(key) {
         if (key === 'left' && this.x != 0) {
             this.x = this.x - 101;
-        } else if (key === 'up' && this.y != -14) {
+        } else if (key === 'up' && this.y != -20) {
             this.y = this.y - 84;
         } else if (key === 'right' && this.x != 404) {
             this.x = this.x + 101;
-        } else if (key === 'down' && this.y != 406) {
+        } else if (key === 'down' && this.y != 400) {
             this.y = this.y + 84;
         }
     }
@@ -99,19 +110,21 @@ class Player {
     reset() {
         // Counter increases every time a player cross or collide
         this.currentPlayer += 1;
+        this.x = 202;
+        this.y = 400;
 
         // Change the player character
         switch (this.currentPlayer) {
-            case 2:
+            case 1:
                 this.sprite = 'images/char-cat-girl.png'
                 break;
-            case 3:
+            case 2:
                 this.sprite = 'images/char-horn-girl.png'
                 break;
-            case 4:
+            case 3:
                 this.sprite = 'images/char-pink-girl.png'
                 break;
-            case 5:
+            case 4:
                 this.sprite = 'images/char-princess-girl.png'
                 break;
         }
@@ -133,17 +146,28 @@ class Gem {
     }
 }
 
+// Create new Rock class as a subclass of Gem
+class Rock extends Gem {
+    constructor(x, y, sprite = 'images/rock.png') {
+        super(x, y, sprite);
+    }
+
+    render() {
+        super.render();
+    }
+}
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-const enemy1 = new Enemy(-130, 63);
-const enemy2 = new Enemy(-130, 145);
-const enemy3 = new Enemy(-130, 227);
-const enemy4 = new Enemy(-230, 63);
-const enemy5 = new Enemy(-230, 227);
+const enemy1 = new Enemy(-130, 64);
+const enemy2 = new Enemy(-130, 148);
+const enemy3 = new Enemy(-130, 232);
+const enemy4 = new Enemy(-230, 64);
+const enemy5 = new Enemy(-230, 232);
 
 const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5];
 // Instantiate and place the player object in a variable called player
-const player = new Player(202, 406);
+const player = new Player(202, 400);
 
 // Instantiate gems
 const gem1 = new Gem(0, -25);
@@ -154,6 +178,19 @@ const gem5 = new Gem(404, -25);
 
 // Place all gems objects in an array called allGems
 const allGems = [gem1, gem2, gem3, gem4, gem5];
+
+
+// Instantiate rocks
+const rock1 = new Rock(0, -25);
+const rock2 = new Rock(101, -25);
+const rock3 = new Rock(202, -25);
+const rock4 = new Rock(303, -25);
+const rock5 = new Rock(404, -25);
+
+// Place all rocks objects in an array called allRocks
+const allRocks = [rock1, rock2, rock3, rock4, rock5];
+
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
