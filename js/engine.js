@@ -160,7 +160,7 @@ var Engine = (function(global) {
             if (player.playerWon[index] === true) {
                 gem.render();
             }
-        })
+        });
 
         player.render();
 
@@ -171,7 +171,7 @@ var Engine = (function(global) {
             if (player.playerWon[index] === false) {
                 rock.render();
             }
-        })
+        });
 
     }
 

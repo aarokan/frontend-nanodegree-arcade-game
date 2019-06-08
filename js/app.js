@@ -127,6 +127,28 @@ class Player {
             case 4:
                 this.sprite = 'images/char-princess-girl.png'
                 break;
+            case 5:
+                // Stop the game
+                Enemy.prototype.update = function() {};
+                player.handleInput = function() {};
+
+                // Loop through all of the items within the playerWon array and count winnig try
+                let winCounter = 0;
+                this.playerWon.forEach(function(won) {
+                    if (won) {
+                        winCounter += 1;
+                    }
+                });
+
+                if (winCounter > 2) {
+                    const winHTML = `<div>Congratulation! You Won!<p>You have reached the water ${winCounter}
+                                          times and got ${winCounter} gems. To play again refresh the page.</p></div>`;
+                    document.body.insertAdjacentHTML('afterbegin', winHTML);
+                } else {
+                  const winHTML = `<div>Game Over!<p>Try again. You have to reach the water 3 times at least
+                                        . To play again refresh the page.</p></div>`;
+                  document.body.insertAdjacentHTML('afterbegin', winHTML);
+                }
         }
     }
 }
