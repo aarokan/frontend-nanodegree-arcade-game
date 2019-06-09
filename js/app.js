@@ -139,6 +139,7 @@ class Player {
                 });
 
                 if (winCounter > 2) {
+                    alert(`You won the game`);
                     const winHTML = `<div>Congratulation! You Won!<p>You have reached the water ${winCounter}
                                           times and got ${winCounter} gems. To play again refresh the page.</p></div>`;
                     document.body.insertAdjacentHTML('afterbegin', winHTML);
