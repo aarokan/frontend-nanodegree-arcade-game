@@ -197,12 +197,12 @@ var Engine = (function(global) {
         'images/char-horn-girl.png',
         'images/char-pink-girl.png',
         'images/char-princess-girl.png',
-        'images/star.png',
-        'images/rock.png',
-        'images/selector.png',
-        'images/heart.png',
-        'images/gem green.png',
-        'images/key.png'
+        'images/Star.png',
+        'images/Rock.png',
+        'images/Selector.png',
+        'images/Heart.png',
+        'images/Gem Green.png',
+        'images/Key.png'
     ]);
     Resources.onReady(init);
 

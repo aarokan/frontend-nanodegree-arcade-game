@@ -33,7 +33,7 @@ Enemy.prototype.update = function(dt) {
     // check Collisions
     if (parseInt(this.x, 10) < player.x && parseInt(this.x, 10) + 60 > player.x && this.y === player.y ||
         parseInt(this.x, 10) > player.x && parseInt(this.x, 10) - 60 < player.x && this.y === player.y  ) {
-        // set playerWon array item to false if player win
+        // set playerWon array item to false if player failed to win in the current attempt
         player.playerWon[player.currentPlayer] = false;
         player.reset();
     }
@@ -62,8 +62,6 @@ class Player {
     update() {
         // Check if the player crossed to the water
         if (this.y === -20) {
-            // this.x = 202;
-            // this.y = 400;
             // set playerWon array item to true if player win
             switch (this.currentPlayer) {
                 case 0:
