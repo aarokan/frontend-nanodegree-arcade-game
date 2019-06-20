@@ -155,7 +155,7 @@ class Player {
 
 // Gem class which instantiate gems to show that a player has crossed
 class Gem {
-    constructor(x, y, sprite = 'images/gem green.png') {
+    constructor(x, y, sprite = 'images/Gem Green.png') {
         this.x = x;
         this.y = y;
         // The image for our gems
@@ -169,7 +169,7 @@ class Gem {
 
 // Create new Rock class as a subclass of Gem
 class Rock extends Gem {
-    constructor(x, y, sprite = 'images/rock.png') {
+    constructor(x, y, sprite = 'images/Rock.png') {
         super(x, y, sprite);
     }
 
